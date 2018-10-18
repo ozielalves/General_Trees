@@ -10,7 +10,9 @@ It is a different representation of an arity tree n that consists of using two r
 
 ## Disadvantages
 
-- sic operations such as searching / inserting / deleting tend to take more time to find the appropriate element, because in the worst case it would be necessary to go through all the siblings of the node to apply some of these functions.
+- Basic operations such as searching / inserting / deleting tend to take more time to find the appropriate element, because in the worst case it would be necessary to go through all the siblings of the node to apply some of these functions.
+
+
 
 
 *Obs.: The python representation still have to be better adapted, since the code was first made in c++.*
