@@ -9,9 +9,22 @@ int main() {
     *    2 -> 3 -> 4 -> 5
     *              |    |
     *              6    7 -> 8 -> 9  */
-    LeftChildRightSibling<int> *tree = new LeftChildRightSibling<int>(10);
+    
+    Tree<int> *tree = new Tree<int>(10);
 
-    tree->pushChild(2);
+	tree->insert(2, 10);
+	tree->insert(3, 10);
+	tree->insert(4, 10);
+	tree->insert(6, 4);
+	tree->insert(5, 10);
+	tree->insert(7, 5);
+	tree->insert(8, 5);
+	tree->insert(9, 5);
+
+	tree->show();
+
+    /*
+	tree->pushChild(2);
     tree->pushChild(3);
     Node<int> *n3 = tree->pushChild(4);
     tree->pushChild(6, n3);
@@ -23,6 +36,7 @@ int main() {
     tree->pushChild(9, n5);
 	
 	tree->print();
+	*/
 /*
 	// Search
 	for (int i = 0; i < 11; ++i){
@@ -39,12 +53,13 @@ int main() {
     }
 */
 	// Remove
-	tree->remove(5);
+	//tree->remove(5);
 
 	// Imprime
-	std::cout << "\n";
-    tree->print();
-	std::cout << "\n";
+	
+    //std::cout << "\n";
+    //tree->print();
+	//std::cout << "\n";
 
 	// Realiza pesquisa		    
 /*	std::cout << '\n';

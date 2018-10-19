@@ -8,7 +8,7 @@ $(PROG) : $(OBJS)
 	mv *.o build/
 
 main.o : include/leftChildRightSibling.hpp include/node.hpp
-	$(CC) $(CPPFLAGS) -c src/main.cpp
+	$(CC) $(CPPFLAGS) -c src/new_main.cpp
 
 clean:
 	rm -f build/*.o
