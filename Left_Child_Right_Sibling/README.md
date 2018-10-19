@@ -17,7 +17,7 @@ To compile we will use a makefile, so compilations may be more dynamic and autom
 $ git clone https://github.com/ozielalves/General_Trees.git
 
 # Enter repo:
-$ cd General_Trees/LeftChildRightSibling
+$ cd General_Trees/Left_Child_Right_Sibling
 
 # To compile the whole project, insert 'make' inside of path's root:
 $ make
