@@ -1,4 +1,4 @@
-# Left Child Right Sibling - C++/Python Representation
+# Left Child Right Sibling - General Tree Representation
 
 The current representation is about an general tree based on the use of nodes. The relation between the nodes is simple and the references are just two, each node can only refers to an "child" and an "sibling". In this especific case the tree will only insert an element as a sibling if the current "dad" have no more than 3 childs. More information over general tree implementations techniques can be founded [here](https://pdfs.semanticscholar.org/ba06/7c2a0efbe81c4f887d2a2d129e4dae9ede2a.pdf).
 
@@ -17,7 +17,7 @@ To compile we will use a makefile, so compilations may be more dynamic and autom
 $ git clone https://github.com/ozielalves/General_Trees.git
 
 # Enter repo:
-$ cd General_Trees/LeftChildRightSibling
+$ cd General_Trees/Left_Child_Right_Sibling
 
 # To compile the whole project, insert 'make' inside of path's root:
 $ make
