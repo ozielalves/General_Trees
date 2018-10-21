@@ -2,7 +2,7 @@
  * @file lefChildRightSibling.hpp
  * @version 1.0
  * @since Out, 19. 
- * @date Out, 19.
+ * @date Out, 20.
  * @author Oziel Alves (ozielalves@ufrn.edu.br)
  * @title Left Child Right Sibling Tree 
  */
@@ -10,7 +10,11 @@
 #ifndef _LEFT_CHILD_RIGHT_SIBLING_HPP_
 #define _LEFT_CHILD_RIGHT_SIBLING_HPP_
 #include <iostream>
+#include <vector>
+#include <bits/stdc++.h>
 #include "node.hpp"
+
+using namespace std;
 
 /**
  * @brief The Tree class prototype.
@@ -42,7 +46,7 @@ class Tree{
             now->value = value;
 
             return now;
-       }
+        }
 
         /**
          * @brief Inserts an element into the tree based on an dad node.
@@ -51,23 +55,31 @@ class Tree{
          * @return True if the insertion was successful and False otherwise.
          */
         bool insert(T value, T dad){
-            int cotas = 0;
-            auto * daddy = busca(dad); // Verifies if dad exists
-            if (!daddy) return false;
-            auto * son = createNewNode(value);
-            auto * p = daddy->child;
-            if (!p) daddy->child = son;
-            else{
-                while (p->sibling){
-                    if (cotas == 3) {
-                        std::cout << "\nChild limit exceeded to node" << dad<<", impossible to insert.";
-                        return false;
-                    } 
-                    p = p->sibling;
-                    cotas += 1;
-                }
-                p->sibling = son;
+            auto * daddy = search(dad); // Verifies if dad exists.
+            if (!daddy){
+              std::cout << "\n>> The chosen dad was not founded.";
+              return false;
             }
+            auto * son = createNewNode(value); 
+            auto * p = daddy->child;
+            if (!p) {
+              daddy->child = son;
+            } else {
+                daddy->cota = 1;
+                while (p->sibling){
+                  daddy->cota += 1; 
+                  p = p->sibling;
+                }
+                if (daddy->cota == 3) {
+                  std::cout << "\n>> 'Children' limit exceeded to the node " << dad <<", impossible to insert.";
+                  daddy->cota = 0;
+                  return false;
+                } else {
+                  daddy->cota = 0;
+                  p->sibling = son;
+                }
+            }
+            std::cout<< "\n>> The element was inserted.";
             return true;
         }
 
@@ -75,32 +87,42 @@ class Tree{
          * @brief Prints an tree representation.
          * @param *root The tree to be printed.
          */
-        void show(Node<T> *root = NULL){
+        void show(Node<T> *root /*= NULL*/){
             if (root == NULL) return;
-            printf("%d (",root->value);
+            printf("%d(",root->value);
             auto * p = root->child;
             while (p) {
                 show(p);
-                p = p->child;
+                p = p->sibling;
             }
             printf(" )"); 
-        }       
+        }
+
+        void print(){
+          std::cout << "\n\n";
+          show(this->root);
+        }      
 
         /**
          * @brief Search for an element in the tree.
          * @param value The element to be searched.
          * @return The element if it was founded and NULL otherwise.
          */
-        Node<T> * busca(T value){
+        Node<T> * busca(T value, Node<T> * node){
             if (this->root == NULL) return NULL;
             if (this->root->value == value) return root;
-            auto * p = this->root->child;
+            if (node->value == value) return node; 
+            auto * p = node->child;
             while (p) {
-                auto * prox = busca(value);
+                auto * prox = busca(value, p);
                 if (prox) return (prox);
                 p = p->sibling;
             }
             return NULL;
+        }
+
+        Node<T> * search(T value){
+            return busca(value, this->root);
         }
 
         //adoptive_remove
@@ -115,41 +137,63 @@ class Tree{
             this->root->value = value;
         }
 
+        ~Tree(){
+          delete this->root;
+        }
+
         /**
-         * @brief Calculate the tree height.
+         * @brief Calculate the tree height in a Binary vision.
          * @param *n The tree.
          * @return The tree height
          */
         int height(Node<T> *n = NULL) { 
-			if(n == NULL){
-                if(this->root == NULL){ return 0; }
+          if(n == NULL){
+            if(this->root == NULL) return 0; 
+            n = root;
+          }
+          int h, t;
 
-                n = root;
-            }
- 
-            int h, t;
-
-            if (n == NULL) return -1; 
-
-            h = 0; //height
-            n = n->child; 
-
-            while (n!= NULL) {
-                t = height(n); 
-                if (t > h)  
-                    h = t; 
-                n = n->sibling; 
-            } 
-
-            return h+1; 
+          if (n == NULL) return -1; 
+          h = 0; //height
+          n = n->child; 
+          while (n!= NULL) {
+            t = height(n); 
+            if (t > h)  
+            h = t; 
+            n = n->sibling; 
+          } 
+          return h+1; 
         }
+
+
+        // int diameter(Node<T> *root = NULL) { 
+        //   // Base case 
+        //   if (!root) return 0; 
+        //   // Find top two highest children 
+        //   int max1 = 0, max2 = 0; 
+        //   for (vector<Node*>::iterator it = root->child.begin(); 
+        //                   it != root->child.end(); it++){ 
+        //     int h = depthOfTree(*it); 
+        //     if (h > max1) 
+        //     max2 = max1, max1 = h; 
+        //     else if (h > max2) 
+        //     max2 = h; 
+        //   } 
+        //   // Iterate over each child for diameter 
+        //   int maxChildDia = 0; 
+        //   for (vector<Node*>::iterator it = root->child.begin(); 
+        //                    it != root->child.end(); it++) 
+        //     maxChildDia = max(maxChildDia, diameter(*it)); 
+  
+        //   return max(maxChildDia, max1 + max2 + 1); 
+        // } 
 
         /**
          * @brief Removes an element from the tree.
          * @param value The element to be removed.
          */
 		    void remove(T value){
-          auto *node = this->busca(value);
+          auto *node = search(value);
 
           if(node == NULL){
             std::cout << "\nValor nao esta na Arvore\n";

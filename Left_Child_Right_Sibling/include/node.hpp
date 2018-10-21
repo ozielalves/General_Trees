@@ -2,7 +2,7 @@
  * @file node.hpp
  * @version 1.0
  * @since Out, 19. 
- * @date Out, 19.
+ * @date Out, 20.
  * @author Oziel Alves (ozielalves@ufrn.edu.br)
  * @title Node Prototype 
  */
@@ -18,7 +18,8 @@ class Node{
         T value;
         Node<T> *child;
         Node<T> *sibling;
-
+        int cota;
+        
         /**
          * @brief Node Constructor
          * @param value Node data
@@ -29,7 +30,9 @@ class Node{
             this->sibling = NULL;
         }
 
-        Node<T>(){}
+        Node<T>(){ /*Empty*/ }
+
+        ~Node<T>(){ /*Empty*/ }
 };
 
 #endif

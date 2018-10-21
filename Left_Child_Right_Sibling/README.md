@@ -1,4 +1,6 @@
-# Left Child Right Sibling - General Tree Representation
+# nAry Tree - General Tree Representation
+
+***Left Child Right Sibling tree kind***
 
 The current representation is about an general tree based on the use of nodes. The relation between the nodes is simple and the references are just two, each node can only refers to an "child" and an "sibling". In this especific case the tree will only insert an element as a sibling if the current "dad" have no more than 3 childs. More information over general tree implementations techniques can be founded [here](http://www.inf.ufsc.br/~r.mello/ine5384/13-MetodosPesquisa2.pdf).
 
