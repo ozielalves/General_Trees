@@ -20,6 +20,8 @@ int main( void ) {
 	tree->insert(4, 10);
 
 	tree->insert(6, 4);
+	tree->insert(12, 6);
+	tree->insert(14, 12);
 
 	tree->insert(5, 10);
 	std::cout << " -- This Node should not be inserted.";
