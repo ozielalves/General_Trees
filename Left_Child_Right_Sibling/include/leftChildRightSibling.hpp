@@ -165,29 +165,6 @@ class Tree{
           return h+1; 
         }
 
-
-        // int diameter(Node<T> *root = NULL) { 
-        //   // Base case 
-        //   if (!root) return 0; 
-        //   // Find top two highest children 
-        //   int max1 = 0, max2 = 0; 
-        //   for (vector<Node*>::iterator it = root->child.begin(); 
-        //                   it != root->child.end(); it++){ 
-        //     int h = depthOfTree(*it); 
-        //     if (h > max1) 
-        //     max2 = max1, max1 = h; 
-        //     else if (h > max2) 
-        //     max2 = h; 
-        //   } 
-        //   // Iterate over each child for diameter 
-        //   int maxChildDia = 0; 
-        //   for (vector<Node*>::iterator it = root->child.begin(); 
-        //                    it != root->child.end(); it++) 
-        //     maxChildDia = max(maxChildDia, diameter(*it)); 
-  
-        //   return max(maxChildDia, max1 + max2 + 1); 
-        // } 
-
         /**
          * @brief Removes an element from the tree.
          * @param value The element to be removed.
